@@ -1,0 +1,141 @@
+definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  inputForms.SignInInput:
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+    required:
+    - login
+    - password
+    type: object
+  inputForms.TokenReqBody:
+    properties:
+      refresh_token:
+        type: string
+    required:
+    - refresh_token
+    type: object
+  models.Role:
+    properties:
+      name:
+        type: string
+    type: object
+  models.User:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      email:
+        description: Base information
+        type: string
+      firstName:
+        type: string
+      id:
+        type: integer
+      patronymic:
+        type: string
+      phone:
+        type: string
+      role:
+        items:
+          $ref: '#/definitions/models.Role'
+        type: array
+      secondName:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  outputForms.AuthResponse:
+    properties:
+      refresh_token:
+        type: string
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/models.User'
+    type: object
+  outputForms.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  outputForms.RefreshTokenResponse:
+    properties:
+      token:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Auth methods for skipper cms
+  title: Auth service
+  version: "1.0"
+paths:
+  /auth/refresh-token:
+    post:
+      consumes:
+      - application/json
+      description: Обновление токена
+      parameters:
+      - description: query params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/inputForms.TokenReqBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/outputForms.RefreshTokenResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/outputForms.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/outputForms.ErrorResponse'
+      tags:
+      - Auth
+  /auth/sign-in:
+    post:
+      consumes:
+      - application/json
+      description: Вход
+      parameters:
+      - description: query params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/inputForms.SignInInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/outputForms.AuthResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/outputForms.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/outputForms.ErrorResponse'
+      tags:
+      - Auth
+swagger: "2.0"
