@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/skipper_cms_auth:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/skipper_cms_clients:latest
       - name: Update project on server
         uses: appleboy/ssh-action@master
         with:
@@ -34,8 +34,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /home/buroroll/skipper_cms/skipper_cms_auth
-            docker stop skipper_cms_auth
-            docker rm skipper_cms_auth
-            docker rmi --force buroroll/skipper_cms_auth
-            docker run -d -p 8004:8080 --env-file .env --name skipper_cms_auth --restart unless-stopped buroroll/skipper_cms_auth:latest
+            cd /home/buroroll/skipper_cms/skipper_cms_clients
+            docker stop skipper_cms_clients
+            docker rm skipper_cms_clients
+            docker rmi --force buroroll/skipper_cms_clients
+            docker run -d -p 8005:8080 --env-file .env --name skipper_cms_clients --restart unless-stopped buroroll/skipper_cms_clients:latest
