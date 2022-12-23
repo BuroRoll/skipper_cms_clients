@@ -6,13 +6,13 @@ import (
 	"net/http"
 )
 
-// @Description 	Получение всех пользователей
-// @Tags 			Clients
-// @Accept 			json
-// @Produce 		json
-// @Success 		200 		{object} 	outputForms.AuthResponse
-// @Failure     	400         {object}  	outputForms.ErrorResponse
-// @Failure     	500         {object}  	outputForms.ErrorResponse
+// GetAllClients godoc
+// @Description Получение списка менторов и менти
+// @Security BearerAuth
+// @Tags Clients
+// @Accept json
+// @Produce json
+// @Success 	200 		{object} 	[]models.User
 // @Router /clients/ [get]
 func (h *Handler) GetAllClients(c *gin.Context) {
 	clients, err := h.services.GetClients()
