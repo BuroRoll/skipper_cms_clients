@@ -67,17 +67,6 @@ type OtherInformation struct {
 	Data     string
 }
 
-type Pagination struct {
-	Limit      int      `json:"limit"`
-	Page       int      `json:"page"`
-	Sort       string   `json:"sort"`
-	Search     []string `json:"search"`
-	DownPrice  int      `json:"downPrice"`
-	HighPrice  int      `json:"highPrice"`
-	DownRating int      `json:"downRating"`
-	HighRating int      `json:"highRating"`
-}
-
 type Statistic struct {
 	LessonsCount                      float64 `json:"lessons_count"`
 	StudentsCount                     uint    `json:"students_count"`

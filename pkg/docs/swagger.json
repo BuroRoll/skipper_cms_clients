@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Auth methods for skipper cms",
-        "title": "Auth service",
+        "description": "Clients methods for skipper cms",
+        "title": "Clients service",
         "contact": {},
         "version": "1.0"
     },

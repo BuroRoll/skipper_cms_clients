@@ -132,8 +132,8 @@ definitions:
     type: object
 info:
   contact: {}
-  description: Auth methods for skipper cms
-  title: Auth service
+  description: Clients methods for skipper cms
+  title: Clients service
   version: "1.0"
 paths:
   /clients/:

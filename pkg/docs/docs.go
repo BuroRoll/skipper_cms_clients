@@ -249,8 +249,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "Auth service",
-	Description:      "Auth methods for skipper cms",
+	Title:            "Clients service",
+	Description:      "Clients methods for skipper cms",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

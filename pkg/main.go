@@ -7,9 +7,9 @@ import (
 	"Skipper_cms_clients/pkg/servises"
 )
 
-// @title Auth service
+// @title Clients service
 // @version 1.0
-// @description Auth methods for skipper cms
+// @description Clients methods for skipper cms
 func main() {
 	db := models.GetDB()
 	repos := repository.NewRepository(db)
