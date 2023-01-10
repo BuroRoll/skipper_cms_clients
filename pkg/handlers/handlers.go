@@ -24,11 +24,7 @@ func (h *Handler) InitRoutes() {
 		clients := api_v1.Group("/clients")
 		{
 			clients.GET("/", h.GetAllClients)
-			//clients.GET("/:clientId", h.GetClientData)
-			//reports := clients.Group("/reports")
-			//{
-			//	reports.GET("/:clientId", h.GetClientReports)
-			//}
+			clients.GET("/:ClientId", h.GetClientData)
 		}
 	}
 

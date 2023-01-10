@@ -154,4 +154,26 @@ paths:
       - BearerAuth: []
       tags:
       - Clients
+  /clients/{ClientId}:
+    get:
+      consumes:
+      - application/json
+      description: Получение конкретного пользователя
+      parameters:
+      - description: Client ID
+        in: path
+        name: ClientId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - BearerAuth: []
+      tags:
+      - Clients
 swagger: "2.0"

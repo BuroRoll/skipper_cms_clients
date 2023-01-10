@@ -16,3 +16,7 @@ func NewClientsService(repo repository.Clients) *ClientsService {
 func (c ClientsService) GetClients() ([]models.User, error) {
 	return c.repo.GetClients()
 }
+
+func (c ClientsService) GetClient(userId uint) (models.User, error) {
+	return c.repo.GetClient(userId)
+}

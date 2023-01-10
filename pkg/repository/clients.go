@@ -19,3 +19,9 @@ func (c ClientsPostgres) GetClients() ([]models.User, error) {
 	c.db.Preload(clause.Associations).Find(&clients)
 	return clients, nil
 }
+
+func (c ClientsPostgres) GetClient(userId uint) (models.User, error) {
+	var client models.User
+	c.db.Preload(clause.Associations).Find(&client, userId)
+	return client, nil
+}
