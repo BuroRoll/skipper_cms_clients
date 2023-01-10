@@ -13,10 +13,14 @@ import (
 // @Tags Clients
 // @Accept json
 // @Produce json
+// @Param        limit   	query      int  	false  "limit"
+// @Param        page   	query      int  	false  "page"
+// @Param        search   	query      string  	false  "search"
 // @Success 	200 		{object} 	[]models.User
 // @Router /clients/ [get]
 func (h *Handler) GetAllClients(c *gin.Context) {
-	clients, err := h.services.GetClients()
+	pagination := GeneratePaginationFromRequest(c)
+	clients, err := h.services.GetClients(&pagination)
 	if err != nil {
 		c.JSON(http.StatusNotFound, outputForms.ErrorResponse{Error: "Ошибка получения всех пользователей"})
 	}

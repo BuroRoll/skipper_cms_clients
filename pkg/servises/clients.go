@@ -13,8 +13,8 @@ func NewClientsService(repo repository.Clients) *ClientsService {
 	return &ClientsService{repo: repo}
 }
 
-func (c ClientsService) GetClients() ([]models.User, error) {
-	return c.repo.GetClients()
+func (c ClientsService) GetClients(pagination *models.Pagination) ([]models.User, error) {
+	return c.repo.GetClients(&pagination)
 }
 
 func (c ClientsService) GetClient(userId uint) (models.User, error) {

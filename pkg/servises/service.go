@@ -6,7 +6,7 @@ import (
 )
 
 type Clients interface {
-	GetClients() ([]models.User, error)
+	GetClients(*models.Pagination) ([]models.User, error)
 	GetClient(userId uint) (models.User, error)
 }
 

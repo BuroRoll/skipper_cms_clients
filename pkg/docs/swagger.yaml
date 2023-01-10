@@ -141,6 +141,19 @@ paths:
       consumes:
       - application/json
       description: Получение списка менторов и менти
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: search
+        in: query
+        name: search
+        type: string
       produces:
       - application/json
       responses:
