@@ -30,6 +30,8 @@ type User struct {
 	WorkExperiences   []WorkExperience   `gorm:"ForeignKey:ParentId"`
 	OtherInformation  []OtherInformation `gorm:"ForeignKey:ParentId"`
 	AverageClassPrice uint               `gorm:"default:0"`
+
+	Statistic Statistic `gorm:"-"`
 }
 type Communication struct {
 	gorm.Model
@@ -93,4 +95,8 @@ type Pagination struct {
 	Page   int      `json:"page"`
 	Sort   string   `json:"sort"`
 	Search []string `json:"search"`
+}
+
+func (user *User) UpdateStatistic(stat *Statistic) {
+	user.Statistic = *stat
 }

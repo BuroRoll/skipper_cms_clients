@@ -8,6 +8,9 @@ import (
 type Clients interface {
 	GetClients(**models.Pagination) ([]models.User, error)
 	GetClient(userId uint) (models.User, error)
+	GetMentiCountLessons(userId uint, time string, isComplete bool) float64
+	GetMentorCountStudents(userId uint) uint
+	GetMentorCountLessons(userId uint, time string, isComplete bool) float64
 }
 
 type Repository struct {
