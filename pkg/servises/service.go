@@ -8,6 +8,7 @@ import (
 type Clients interface {
 	GetClients(*models.Pagination) ([]models.User, error)
 	GetClient(userId uint) (models.User, error)
+	GetClientsCount() int
 }
 
 type Service struct {

@@ -16,15 +16,19 @@ import (
 // @Param        limit   	query      int  	false  "limit"
 // @Param        page   	query      int  	false  "page"
 // @Param        search   	query      string  	false  "search"
-// @Success 	200 		{object} 	[]models.User
+// @Success 	200 		{object} 	[]outputForms.ClientsResponse
 // @Router /clients/ [get]
 func (h *Handler) GetAllClients(c *gin.Context) {
 	pagination := GeneratePaginationFromRequest(c)
 	clients, err := h.services.GetClients(&pagination)
+	clientsCount := h.services.GetClientsCount()
 	if err != nil {
 		c.JSON(http.StatusNotFound, outputForms.ErrorResponse{Error: "Ошибка получения всех пользователей"})
 	}
-	c.JSON(http.StatusOK, clients)
+	c.JSON(http.StatusOK, outputForms.ClientsResponse{
+		Clients:            clients,
+		ClientsCount:       clientsCount,
+		ClientsCountSearch: len(clients)})
 }
 
 // GetClientData godoc

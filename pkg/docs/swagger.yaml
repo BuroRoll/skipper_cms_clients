@@ -55,6 +55,29 @@ definitions:
       toUserId:
         type: integer
     type: object
+  models.Statistic:
+    properties:
+      full_attendance:
+        type: number
+      last_month_attendance:
+        type: number
+      last_month_lessons_count:
+        type: number
+      last_month_unclompleted_lessons:
+        type: number
+      last_three_month_attendance:
+        type: number
+      last_three_month_unclompleted_lessons:
+        type: number
+      last_three_months_lessons_count:
+        type: number
+      lessons_count:
+        type: number
+      students_count:
+        type: integer
+      uncomplited_lessons:
+        type: number
+    type: object
   models.User:
     properties:
       averageClassPrice:
@@ -106,6 +129,8 @@ definitions:
       specialization:
         description: Mentor information
         type: string
+      statistic:
+        $ref: '#/definitions/models.Statistic'
       time:
         type: string
       userReports:
@@ -129,6 +154,17 @@ definitions:
         type: integer
       startYear:
         type: string
+    type: object
+  outputForms.ClientsResponse:
+    properties:
+      clients:
+        items:
+          $ref: '#/definitions/models.User'
+        type: array
+      clients_count:
+        type: integer
+      clients_count_search:
+        type: integer
     type: object
 info:
   contact: {}
@@ -161,7 +197,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.User'
+              $ref: '#/definitions/outputForms.ClientsResponse'
             type: array
       security:
       - BearerAuth: []

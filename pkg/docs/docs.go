@@ -59,7 +59,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.User"
+                                "$ref": "#/definitions/outputForms.ClientsResponse"
                             }
                         }
                     }
@@ -188,6 +188,41 @@ const docTemplate = `{
                 }
             }
         },
+        "models.Statistic": {
+            "type": "object",
+            "properties": {
+                "full_attendance": {
+                    "type": "number"
+                },
+                "last_month_attendance": {
+                    "type": "number"
+                },
+                "last_month_lessons_count": {
+                    "type": "number"
+                },
+                "last_month_unclompleted_lessons": {
+                    "type": "number"
+                },
+                "last_three_month_attendance": {
+                    "type": "number"
+                },
+                "last_three_month_unclompleted_lessons": {
+                    "type": "number"
+                },
+                "last_three_months_lessons_count": {
+                    "type": "number"
+                },
+                "lessons_count": {
+                    "type": "number"
+                },
+                "students_count": {
+                    "type": "integer"
+                },
+                "uncomplited_lessons": {
+                    "type": "number"
+                }
+            }
+        },
         "models.User": {
             "type": "object",
             "properties": {
@@ -260,6 +295,9 @@ const docTemplate = `{
                     "description": "Mentor information",
                     "type": "string"
                 },
+                "statistic": {
+                    "$ref": "#/definitions/models.Statistic"
+                },
                 "time": {
                     "type": "string"
                 },
@@ -293,6 +331,23 @@ const docTemplate = `{
                 },
                 "startYear": {
                     "type": "string"
+                }
+            }
+        },
+        "outputForms.ClientsResponse": {
+            "type": "object",
+            "properties": {
+                "clients": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.User"
+                    }
+                },
+                "clients_count": {
+                    "type": "integer"
+                },
+                "clients_count_search": {
+                    "type": "integer"
                 }
             }
         }

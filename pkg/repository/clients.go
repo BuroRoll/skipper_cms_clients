@@ -10,6 +10,12 @@ type ClientsPostgres struct {
 	db *gorm.DB
 }
 
+func (c ClientsPostgres) GetClientsCount() int {
+	var count int64
+	c.db.Model(models.User{}).Count(&count)
+	return int(count)
+}
+
 func NewClientsPostgres(db *gorm.DB) *ClientsPostgres {
 	return &ClientsPostgres{db: db}
 }

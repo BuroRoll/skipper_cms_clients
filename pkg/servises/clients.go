@@ -10,6 +10,10 @@ type ClientsService struct {
 	repo repository.Clients
 }
 
+func (c ClientsService) GetClientsCount() int {
+	return c.repo.GetClientsCount()
+}
+
 func NewClientsService(repo repository.Clients) *ClientsService {
 	return &ClientsService{repo: repo}
 }
