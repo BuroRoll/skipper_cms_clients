@@ -11,7 +11,7 @@ type Clients interface {
 	GetMentiCountLessons(userId uint, time string, isComplete bool) float64
 	GetMentorCountStudents(userId uint) uint
 	GetMentorCountLessons(userId uint, time string, isComplete bool) float64
-	GetClientsCount() int
+	GetClientsCount(**models.Pagination) int
 }
 
 type Repository struct {

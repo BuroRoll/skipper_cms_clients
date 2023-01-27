@@ -10,8 +10,8 @@ type ClientsService struct {
 	repo repository.Clients
 }
 
-func (c ClientsService) GetClientsCount() int {
-	return c.repo.GetClientsCount()
+func (c ClientsService) GetClientsCount(pagination *models.Pagination) int {
+	return c.repo.GetClientsCount(&pagination)
 }
 
 func NewClientsService(repo repository.Clients) *ClientsService {

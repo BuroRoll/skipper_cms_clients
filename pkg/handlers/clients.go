@@ -21,7 +21,7 @@ import (
 func (h *Handler) GetAllClients(c *gin.Context) {
 	pagination := GeneratePaginationFromRequest(c)
 	clients, err := h.services.GetClients(&pagination)
-	clientsCount := h.services.GetClientsCount()
+	clientsCount := h.services.GetClientsCount(&pagination)
 	if err != nil {
 		c.JSON(http.StatusNotFound, outputForms.ErrorResponse{Error: "Ошибка получения всех пользователей"})
 	}

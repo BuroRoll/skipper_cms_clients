@@ -11,10 +11,24 @@ type ClientsPostgres struct {
 	db *gorm.DB
 }
 
-func (c ClientsPostgres) GetClientsCount() int {
-	var count int64
-	c.db.Model(models.User{}).Count(&count)
-	return int(count)
+func (c ClientsPostgres) GetClientsCount(pagination **models.Pagination) int {
+	var clients []models.User
+	queryBuider := c.db
+	if (len((*pagination).Search)) > 0 {
+		queryBuider.
+			Preload(clause.Associations).
+			Where("phone IN (?) OR LOWER(first_name) IN (?) OR LOWER(second_name) IN (?) OR LOWER(patronymic) IN (?)",
+				strings.ToLower((*pagination).Search[0]),
+				strings.ToLower((*pagination).Search[0]),
+				strings.ToLower((*pagination).Search[0]),
+				strings.ToLower((*pagination).Search[0])).
+			Find(&clients)
+	} else {
+		queryBuider.
+			Preload(clause.Associations).
+			Find(&clients)
+	}
+	return len(clients)
 }
 
 func NewClientsPostgres(db *gorm.DB) *ClientsPostgres {
