@@ -4,6 +4,7 @@ import (
 	"Skipper_cms_clients/pkg/models"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
+	"strings"
 )
 
 type ClientsPostgres struct {
@@ -29,7 +30,11 @@ func (c ClientsPostgres) GetClients(pagination **models.Pagination) ([]models.Us
 	if (len((*pagination).Search)) > 0 {
 		result = queryBuider.
 			Preload(clause.Associations).
-			Where("phone IN (?) OR first_name IN (?) OR second_name IN (?) OR patronymic IN (?)", (*pagination).Search, (*pagination).Search, (*pagination).Search, (*pagination).Search).
+			Where("phone IN (?) OR LOWER(first_name) IN (?) OR LOWER(second_name) IN (?) OR LOWER(patronymic) IN (?)",
+				strings.ToLower((*pagination).Search[0]),
+				strings.ToLower((*pagination).Search[0]),
+				strings.ToLower((*pagination).Search[0]),
+				strings.ToLower((*pagination).Search[0])).
 			Find(&clients)
 	} else {
 		result = queryBuider.
